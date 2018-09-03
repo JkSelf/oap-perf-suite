@@ -71,7 +71,7 @@ object OapBenchmarkDataBuilder extends OapPerfSuiteContext with Logging {
     super.beforeAll(conf)
   }
 
-  def generateTables(dataFormats: Array[String] = Array("oap", "parquet")): Unit = {
+  def generateTables(dataFormats: Array[String] = Array("oap", "parquet", "orc")): Unit = {
     val versionNum = properties.get("oap.benchmark.support.oap.version").get
     val codec = properties.get("oap.benchmark.compression.codec").get
     val scale = properties.get("oap.benchmark.tpcds.data.scale").get.toInt
