@@ -34,7 +34,7 @@ object OapBenchmarkDataBuilder extends OapPerfSuiteContext with Logging {
     "oap.benchmark.hdfs.file.root.dir"    -> "/user/oap/oaptest/",
     "oap.benchmark.database.prefix"       -> "",
     "oap.benchmark.database.postfix"      -> "",
-    "oap.benchmark.tpcds.data.scale"      -> "200",
+    "oap.benchmark.tpcds.data.scale"      -> "2",
     "oap.benchmark.tpcds.data.partition"  -> "80"
   )
 
