@@ -45,6 +45,7 @@ object OapBenchmarkDataBuilder extends OapPerfSuiteContext with Logging {
     val baseName = format match {
       case "oap" => s"oap_tpcds_$dataScale"
       case "parquet" => s"parquet_tpcds_$dataScale"
+      case "orc" => s"orc_tpcds_$dataScale"
       case _ => "default"
     }
 
@@ -71,7 +72,7 @@ object OapBenchmarkDataBuilder extends OapPerfSuiteContext with Logging {
     super.beforeAll(conf)
   }
 
-  def generateTables(dataFormats: Array[String] = Array("oap", "parquet")): Unit = {
+  def generateTables(dataFormats: Array[String] = Array("oap", "parquet", "orc")): Unit = {
     val versionNum = properties.get("oap.benchmark.support.oap.version").get
     val codec = properties.get("oap.benchmark.compression.codec").get
     val scale = properties.get("oap.benchmark.tpcds.data.scale").get.toInt
@@ -90,7 +91,7 @@ object OapBenchmarkDataBuilder extends OapPerfSuiteContext with Logging {
 
   def generateDatabases() {
     // TODO: get from OapFileFormatConfigSet
-    val dataFormats: Seq[String] = Seq("oap", "parquet")
+    val dataFormats: Seq[String] = Seq("oap", "parquet", "orc")
     dataFormats.foreach { format =>
       spark.sql(s"create database if not exists ${getDatabase(format)}")
     }
@@ -176,7 +177,7 @@ object OapBenchmarkDataBuilder extends OapPerfSuiteContext with Logging {
 
     val versionNum = properties.get("oap.benchmark.support.oap.version").get
     val hdfsRootDir = properties.get("oap.benchmark.hdfs.file.root.dir").get
-    val dataFormats: Seq[String] = Seq("oap", "parquet")
+    val dataFormats: Seq[String] = Seq("oap", "parquet", "orc")
 
     dataFormats.foreach { dataFormat => {
         spark.sql(s"use ${getDatabase(dataFormat)}")
