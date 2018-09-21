@@ -154,9 +154,30 @@ trait ParquetOnlyConfigSet extends BenchmarkConfigSelector{
   )
 }
 
-trait ParquetVsOapConfigSet extends BenchmarkConfigSelector{
+trait OrcOnlyConfigSet extends BenchmarkConfigSelector{
+  def allConfigurations: Seq[BenchmarkConfig] = Seq(
+    new BenchmarkConfig()
+      .setBenchmarkConfName("Orc w/ index")
+      .setBenchmarkConf(BenchmarkConfig.FILE_FORMAT, "orc")
+      .setBenchmarkConf(BenchmarkConfig.INDEX_ENABLE, "true"),
+    new BenchmarkConfig()
+      .setBenchmarkConfName("Orc w/o index")
+      .setBenchmarkConf(BenchmarkConfig.FILE_FORMAT, "orc")
+      .setBenchmarkConf(BenchmarkConfig.INDEX_ENABLE, "false")
+  )
+}
+
+trait ParquetVsOapVsOrcConfigSet extends BenchmarkConfigSelector{
   // TODO: choose conf
   def allConfigurations: Seq[BenchmarkConfig] = Seq(
+    new BenchmarkConfig()
+      .setBenchmarkConfName("Orc w/ index")
+      .setBenchmarkConf(BenchmarkConfig.FILE_FORMAT, "orc")
+      .setBenchmarkConf(BenchmarkConfig.INDEX_ENABLE, "true"),
+    new BenchmarkConfig()
+      .setBenchmarkConfName("Orc w/o index")
+      .setBenchmarkConf(BenchmarkConfig.FILE_FORMAT, "orc")
+      .setBenchmarkConf(BenchmarkConfig.INDEX_ENABLE, "false"),
     new BenchmarkConfig()
       .setBenchmarkConfName("oap w/ index")
       .setBenchmarkConf(BenchmarkConfig.FILE_FORMAT, "oap")
@@ -219,6 +240,7 @@ trait CacheMissConfigSet extends BenchmarkConfigSelector {
       .setSparkConf("spark.sql.oap.oindex.eis.enabled", "false")
   )
 }
+
 trait LocalClusterConfigSet extends BenchmarkConfigSelector {
   // TODO: choose conf
   def allConfigurations: Seq[BenchmarkConfig] = Seq(
