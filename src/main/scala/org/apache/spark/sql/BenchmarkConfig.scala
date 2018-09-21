@@ -167,7 +167,7 @@ trait OrcOnlyConfigSet extends BenchmarkConfigSelector{
   )
 }
 
-trait ParquetOapOrcConfigSet extends BenchmarkConfigSelector{
+trait ParquetVsOapVsOrcConfigSet extends BenchmarkConfigSelector{
   // TODO: choose conf
   def allConfigurations: Seq[BenchmarkConfig] = Seq(
     new BenchmarkConfig()

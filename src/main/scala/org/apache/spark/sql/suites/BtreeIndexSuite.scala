@@ -19,7 +19,8 @@ package org.apache.spark.sql.suites
 import org.apache.spark.sql._
 import org.apache.spark.sql.internal.oap.OapConf
 
-object BtreeIndexSuite extends OapTestSuite with OapPerfSuiteContext with ParquetOapOrcConfigSet {
+object BtreeIndexSuite
+    extends OapTestSuite with OapPerfSuiteContext with ParquetVsOapVsOrcConfigSet {
   override protected def getAppName: String = "BtreeIndexBenchmarkSuite"
 
   val table = "store_sales"
